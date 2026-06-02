@@ -74,8 +74,6 @@ hypothesis==6.151.10
 idna==3.11
 imageio==2.37.0
 imagesize==1.4.1
-indic-nlp-library-itt==0.1.1
-indictranstoolkit==1.1.1
 ipykernel==7.2.0
 ipython==9.10.0
 ipython_pygments_lexers==1.1.1
