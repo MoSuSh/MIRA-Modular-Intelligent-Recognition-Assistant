@@ -116,7 +116,7 @@ def init_camera():
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_W)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_H)
     cap.set(cv2.CAP_PROP_FPS, 10)
-    print(f"📷 Camera initialized: {int(cap.get(3))}x{int(cap.get(4))}")
+    print(f"Camera initialized: {int(cap.get(3))}x{int(cap.get(4))}")
 
 def release_camera():
     global cap
@@ -135,7 +135,7 @@ def set_camera_resolution(width, height, device='/dev/video0'):
     try:
         subprocess.run(['v4l2-ctl', '-d', device, f'--set-fmt-video=width={width},height={height}'],
                        check=True, capture_output=True)
-        print(f"✅ Camera resolution set to {width}x{height}")
+        print(f"Camera resolution set to {width}x{height}")
     except:
         pass
 
@@ -147,7 +147,7 @@ def optimize_camera_for_ocr(device='/dev/video0'):
         subprocess.run(['v4l2-ctl', '-d', device, '-c', 'focus_automatic_continuous=0'], check=True, capture_output=True)
         time.sleep(0.05)
         subprocess.run(['v4l2-ctl', '-d', device, '-c', 'focus_automatic_continuous=1'], check=True, capture_output=True)
-        print("✅ Camera optimized for OCR")
+        print("Camera optimized for OCR")
     except:
         pass
 
@@ -156,7 +156,7 @@ def refocus_camera(device='/dev/video0'):
         subprocess.run(['v4l2-ctl', '-d', device, '-c', 'focus_automatic_continuous=0'], check=True, capture_output=True)
         time.sleep(0.05)
         subprocess.run(['v4l2-ctl', '-d', device, '-c', 'focus_automatic_continuous=1'], check=True, capture_output=True)
-        print("✅ Camera refocus triggered")
+        print("Camera refocus triggered")
     except:
         pass
 
@@ -202,7 +202,7 @@ def save_result(raw, proc, lines):
             f.write(L + "\n")
 
 # ---------- Memory ----------
-print("🧠 Loading EfficientNet-lite0...")
+print("Loading EfficientNet-lite0...")
 embed_model = timm.create_model("tf_efficientnet_lite0", pretrained=True, num_classes=0, global_pool="avg")
 embed_model.eval()
 
@@ -215,7 +215,7 @@ def extract_embedding(img):
 def save_memory(name, embedding):
     with open(os.path.join(MEMORY_DIR, f"{name}.json"), "w") as f:
         json.dump({"name": name, "embedding": embedding}, f)
-    print(f"💾 Saved memory: {name}")
+    print(f"Saved memory: {name}")
 
 def load_memories():
     memories = []
@@ -269,10 +269,10 @@ def get_dominant_color_simple(crop):
 
 # ---------- English Voice (Vosk) ----------
 if os.path.exists(VOSK_MODEL_PATH):
-    print(f"🗣️ Loading Vosk from {VOSK_MODEL_PATH}")
+    print(f"Loading Vosk from {VOSK_MODEL_PATH}")
     vosk_model = VoskModel(VOSK_MODEL_PATH)
 else:
-    print("❌ Vosk model not found")
+    print("Vosk model not found")
     vosk_model = None
 
 def listen_once(prompt=None, timeout=8.0):
@@ -303,7 +303,7 @@ def listen_once(prompt=None, timeout=8.0):
             channels=1,
             callback=callback
         ):
-            print("🎤 Listening...")
+            print("Listening...")
             start = time.time()
             chunks = []
             while time.time() - start < timeout:
@@ -321,18 +321,18 @@ def listen_once(prompt=None, timeout=8.0):
             rec.AcceptWaveform(resampled.tobytes())
             result = json.loads(rec.FinalResult())
             text = result.get("text", "").strip()
-            print(f"🗣️ USER SAID: {text}")
+            print(f"USER SAID: {text}")
             return text
     except Exception as e:
-        print(f"🎤 Voice capture error: {e}")
+        print(f"Voice capture error: {e}")
         return ""
 
 # ---------- Kannada ASR ----------
-print("📖 Loading Kannada ASR model...")
+print("Loading Kannada ASR model...")
 kannada_processor = Wav2Vec2Processor.from_pretrained(ORIGINAL_MODEL_NAME)
 kannada_model = Wav2Vec2ForCTC.from_pretrained(KANNADA_MODEL_DIR).to(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
 kannada_model.eval()
-print("✅ Kannada ASR model loaded")
+print("Kannada ASR model loaded")
 
 def record_with_vad(silence_duration=1.0, energy_threshold=500, timeout=10.0):
     """
@@ -345,7 +345,7 @@ def record_with_vad(silence_duration=1.0, energy_threshold=500, timeout=10.0):
     audio_queue = queue.Queue()
     def callback(indata, frames, time_info, status):
         audio_queue.put(indata.copy())
-    print("🎤 Recording... (speak now)")
+    print("Recording... (speak now)")
     stream = sd.InputStream(device=device, samplerate=native_sr, channels=1, callback=callback, dtype='int16')
     stream.start()
     chunks = []
@@ -424,11 +424,11 @@ def speech_loop():
         _speak_kannada_internal(text)
 
 # ---------- YOLO & OCR Engine ----------
-print(f"🚀 Loading YOLO from {YOLO_MODEL_PATH}")
+print(f"Loading YOLO from {YOLO_MODEL_PATH}")
 yolo = YOLO(YOLO_MODEL_PATH)
-print("✅ YOLO loaded")
+print("YOLO loaded")
 
-print("📖 Loading ONNX OCR engine...")
+print("Loading ONNX OCR engine...")
 ocr_engine = RapidOCR(
     det_model_path=DET_MODEL_PATH,
     rec_model_path=REC_MODEL_PATH,
@@ -436,7 +436,7 @@ ocr_engine = RapidOCR(
     det_db_thresh=0.3,
     det_db_box_thresh=0.3,
 )
-print("✅ ONNX OCR engine ready")
+print("ONNX OCR engine ready")
 
 def draw_boxes(frame, boxes, names):
     if boxes is None:
@@ -520,7 +520,7 @@ def main():
                         print(f"Camera read exception: {e}")
                     time.sleep(0.05)
                 if not ret:
-                    print("⚠️ Camera read failed, reinitializing...")
+                    print("Camera read failed, reinitializing...")
                     init_camera()
                     continue
             else:
@@ -565,7 +565,7 @@ def main():
                             memory_target_box = None
                             memory_target_class = None
                             speak_text("Entering memory mode.")
-                            print("🔵 MEMORY MODE")
+                            print("MEMORY MODE")
                         elif mode == "memory":
                             if not memory_object_learned:
                                 speak_text("No object learned. Entering finding mode.")
@@ -585,13 +585,13 @@ def main():
                                 speech_exit_requested = False
                                 speech_thread = threading.Thread(target=speech_loop, daemon=True)
                                 speech_thread.start()
-                                print("🔊 Speech reconstruction thread started")
+                                print("Speech reconstruction thread started")
                         elif mode == "speech":
                             if speech_thread is not None:
                                 stop_speech = True
                                 speech_thread.join(timeout=2.0)
                                 speech_thread = None
-                                print("🔊 Speech thread stopped")
+                                print("Speech thread stopped")
                             speak_text("Returning to normal mode.")
                             mode = "idle"
                         occlusion_start = None
@@ -604,7 +604,7 @@ def main():
                     stop_speech = True
                     speech_thread.join(timeout=2.0)
                     speech_thread = None
-                    print("🔊 Speech thread stopped (exit requested)")
+                    print("Speech thread stopped (exit requested)")
                 speech_exit_requested = False
                 stop_speech = False
                 mode = "idle"
@@ -633,7 +633,7 @@ def main():
 
                             if stable >= MIN_STABLE_SECONDS and (now - last_ocr_time) > OCR_COOLDOWN:
                                 speak_text("Processing text")
-                                print(f"\n🕑 Capturing burst in {PRE_CAPTURE_DELAY}s...")
+                                print(f"\nCapturing burst in {PRE_CAPTURE_DELAY}s...")
                                 time.sleep(PRE_CAPTURE_DELAY)
 
                                 burst, scores = [], []
@@ -665,18 +665,18 @@ def main():
                                         lines = [item[1] for item in result if item[2] > 0.5]
                                         if lines:
                                             combined = " ".join(lines)
-                                            print("\n📄 EXTRACTED TEXT:")
+                                            print("\nEXTRACTED TEXT:")
                                             print(combined)
                                             save_result(best_crop, proc, lines)
                                             speak_text(combined)
                                         else:
-                                            print("⚠️ No confident text found")
+                                            print("No confident text found")
                                             speak_text("No clear text detected")
                                     else:
-                                        print("⚠️ No text detected")
+                                        print("No text detected")
                                         speak_text("No text found")
                                 else:
-                                    print("⚠️ No stable frames captured")
+                                    print("No stable frames captured")
                                     speak_text("Hold steadier")
 
                                 last_ocr_time = time.time()
@@ -722,7 +722,7 @@ def main():
                                 stable_time = now - memory_target_visible_since
                                 cv2.putText(annotated, f"Target stable: {stable_time:.1f}s", (best_box[0], best_box[1]-20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,0), 2)
                                 if stable_time >= 1:
-                                    print(f"✅ Object {best_class} stable")
+                                    print(f"Object {best_class} stable")
                                     emb = extract_embedding(best_candidate)
                                     name = listen_once("Please say the name of this item now.", timeout=5)
                                     if name:
@@ -768,7 +768,7 @@ def main():
                                     best_match = mem['name']
                         if best_match:
                             speak_text(f"{best_match} is in the line of sight.")
-                            print(f"🔔 MATCH FOUND: {best_match} (sim={best_sim:.2f})")
+                            print(f"MATCH FOUND: {best_match} (sim={best_sim:.2f})")
                             finding_cooldown_until = now_time + 5.0
 
             if mode == "color" and cap is not None:
@@ -781,7 +781,7 @@ def main():
                         if conf >= COLOR_MIN_CONFIDENCE:
                             cv2.rectangle(annotated, (x1,y1), (x2,y2), (255,0,255), 4)
                             cv2.putText(annotated, f"CLOSEST: {color.upper()} {obj_name} ({conf:.0%})", (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,255), 2)
-                            print(f"🎨 COLOR: {obj_name} → {color} (conf: {conf:.2%})")
+                            print(f"COLOR: {obj_name} → {color} (conf: {conf:.2%})")
                             speak_text(f"Your object is {color}")
                             last_color_speak = now
 
@@ -790,7 +790,7 @@ def main():
                 break
 
     except KeyboardInterrupt:
-        print("\n🛑 Stopped")
+        print("\nStopped")
     except Exception as e:
         print(f"Unexpected error: {e}")
     finally:
@@ -803,7 +803,7 @@ def main():
         tts_queue.put((None, (), {}))
         if tts_worker_thread:
             tts_worker_thread.join(timeout=2)
-        print("✅ MIRA shutdown")
+        print("MIRA shutdown")
 
 if __name__ == "__main__":
     main()
