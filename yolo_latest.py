@@ -88,13 +88,13 @@ def _speak_text_internal(text):
     if not TTS_ENABLED:
         return
     clean = re.sub(r'[^\w\s]', '', text)
-    subprocess.run(['espeak', clean], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(['espeak-ng', clean], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def _speak_kannada_internal(text):
     if not TTS_ENABLED:
         return
     try:
-        subprocess.run(['espeak', '-v', 'kn', text], check=True,
+        subprocess.run(['espeak-ng', '-v', 'kn', text], check=True,
                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except Exception as e:
         print(f"Kannada TTS error: {e}")
