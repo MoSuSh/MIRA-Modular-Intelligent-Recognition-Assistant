@@ -56,6 +56,23 @@ def insert_memory(name: str, embedding_str: str):
         finally:
             conn.close()
     return False
+
+
+def get_all_memories():
+    conn = get_db_connection()
+    
+    if conn is not None:
+        try:
+            cursor = conn.cursor()
+            cursor.execute("SELECT name, embedding FROM memories;")
+            rows = cursor.fetchall()
+            return rows
+        except Error as e:
+            print(f"Could not fetch memories: {e}")
+            return[]
+        finally:
+            conn.close()
+    return[]
     
         
 if __name__ == "__main__":

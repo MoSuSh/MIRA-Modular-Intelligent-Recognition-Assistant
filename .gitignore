@@ -1,0 +1,32 @@
+@"
+# Virtual environment
+.mira/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+
+# Large model folders (excluded from Git)
+final/
+vakyansh-hf/
+
+# Large file types
+*.safetensors
+*.pt
+*.pth
+*.bin
+"@ | Out-File -FilePath .gitignore -Encoding utf8final_model/
+mira.db
+*.zip
+*.jpg
+audio_cap/
+captures/
+mira_models/
+models/
+final_model/
+adapted_model_augmented_final/
+ssd_mobilenet_v3_large_coco_2020_01_14/
+vosk-model-small-en-in-0.4/

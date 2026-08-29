@@ -2,7 +2,7 @@ from typing import List
 from fastapi import FastAPI
 from pydantic import BaseModel
 import json
-from database import insert_memory
+from database import insert_memory, get_all_memories
 
 app = FastAPI()
 
@@ -25,3 +25,20 @@ async def create_memory(memory: MemoryCreate):
             "status": "error",
             "message": "The server received the data, but failed to write it to disk."
         }
+
+@app.get("/memories")
+async def read_memories():
+    raw_memories = get_all_memories()
+    formatted_memories = []
+    
+    for name, embedding_str in raw_memories:
+        try:
+            embedding_list = json.loads(embedding_str)
+            formatted_memories.append({
+                "name": name,
+                "embedding": embedding_list
+            })
+        except Exception:
+            continue
+            
+    return formatted_memories
