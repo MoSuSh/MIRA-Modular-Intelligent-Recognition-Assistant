@@ -235,8 +235,9 @@ def load_memories():
     url = f"{API_BASE_URL}/memories"
     try:
         response = requests.get(url, timeout=3.0)
-        if response.status_code in (200,201) :
-            return response.json()
+        if response.status_code in (200, 201):
+            # Extract and return the list under 'data'
+            return response.json().get("data", [])
         else:
             print(f"Failed to retrieve memories from API: {response.status_code}")
             return []
