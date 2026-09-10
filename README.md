@@ -92,9 +92,8 @@ MIRA/
 ├── mira_memory/               # Local memory storage buffers
 ├── mira_models/               # ONNX detection and recognition model weights
 ├── final_model/               # Fine-tuned Kannada Wav2Vec2 model directory
-├── vosk-model-small-en-in-0.4/# English Vosk speech recognition model
-├── src/                       # Source code directory
-│   └── MIRA.py                # Unified main application script
+├── vosk-model-small-en-in-0.4/# English Vosk speech recognition model (must be added seperately)
+├── MIRA.py                    # Unified main application script
 ├── .gitignore                 # Files/folders excluded from version control
 ├── LICENSE                    # Open-source MIT license file
 ├── requirements.txt           # Python dependency specifications
@@ -106,7 +105,7 @@ MIRA/
 ## Quick Start
 
 ### 1. System Requirements
-Python 3.10+, system video utilities, and audio rendering tools are required.
+Python 3.11, system video utilities, and audio rendering tools are required.
 
 ```bash
 # Ubuntu / Debian
@@ -116,7 +115,7 @@ sudo apt update && sudo apt install -y v4l-utils espeak ffmpeg
 ### 2. Installation
 ```bash
 # Clone the repository
-git clone [https://github.com/your-username/MIRA.git](https://github.com/your-username/MIRA.git)
+git clone [https://github.com/MoSuSh/MIRA-Modular-Intelligent-Recognition-Assistant](https://github.com/MoSuSh/MIRA-Modular-Intelligent-Recognition-Assistant)
 cd MIRA
 
 # Set up virtual environment
@@ -134,12 +133,12 @@ pip install -r requirements.txt
 
 * **Launch MIRA Unified System**:
   ```bash
-  python src/MIRA.py
+  python MIRA.py
   ```
 
 ---
 
-**Pre-trained weights and configurations available under [Releases](https://github.com/your-username/MIRA/releases).**
+**Pre-trained weights and configurations available under [Releases]().**
 
 ---
 
