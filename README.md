@@ -30,10 +30,10 @@ MIRA is an edge-implemented multimodal assistive AI system designed to help indi
 ![MIRA Kannada Speech Dysphonia Reconstruction Mode (Memory Mode)](assets/MIRA_demo_3.jpeg)
 *Local visual embedding matching and SQLite memory lookup interface.*
 
-![MIRA Memory Retrieval Mode (Memory Mode)](assets/MIRA_demo_4.jpeg)
+![MIRA Memory Retrieval Mode (Memory Mode)](assets/MIRA_demo_4.png)
 *Local visual embedding matching and SQLite memory lookup interface.*
 
-![MIRA Government Grant (Memory Mode)](assets/MIRA_KPSC_grant_selection.jpeg)
+![MIRA Government Grant ](assets/MIRA_KPSC_grant_selection.jpeg)
 *Local visual embedding matching and SQLite memory lookup interface.*
 
 ---
