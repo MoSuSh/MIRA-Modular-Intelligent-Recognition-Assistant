@@ -6,7 +6,7 @@
 
 MIRA is an edge-implemented multimodal assistive AI system designed to help individuals with visual challenges and/or speech dysphonia an to operate locally on a Raspberrry Pi 5. The system integrates YOLOv8 object detection (`yolov8n.pt`), colou detection using pre-stored HSV value, EfficientNet-Lite0 dense embedding extraction for live on-device visual memory in order  to enable storage of personal artifacts and their to memorise and share audio cues whenever the system is in *Findiing Mode*, RapidOCR text extraction via ONNX Runtime, English speech recognition via Vosk (`vosk-model-small-en-in-0.4`), and Kannada ASR via a custom model developed by training a Wav2Vec2 (`Harveenchadha/vakyansh-wav2vec2-kannada-knm-560`) on Kannda speakers with speech dysphonia, making it a first of its kind speech dysphonia reconstruciton model designed for Kannada speakers, synchronized with a local REST API backend (`http://localhost:8000`) for persistent SQLite storage.
 
-All outputs of the system arre audio based, helping people with both visual and vocal challenges. Due to the innovative nature of this project, we've recieved a grant from the Govt. of Karnataka, India in order to aid us in the development of this system.
+ All outputs of the system arre audio based, helping people with both visual and vocal challenges. Due to the innovative nature of this project, we've recieved a grant from the Govt. of Karnataka, India in order to aid us in the development of this system.
 
 ---
 
