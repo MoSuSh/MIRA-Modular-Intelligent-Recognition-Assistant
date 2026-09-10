@@ -148,7 +148,7 @@ pip install -r requirements.txt
 
 ---
 
-**Pre-trained weights and configurations available under [Releases]().**
+**Pre-trained weights and configurations available under [Releases](https://github.com/MoSuSh/MIRA-Modular-Intelligent-Recognition-Assistant/releases/tag/Releases).**
 
 ---
 
