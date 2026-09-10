@@ -1,4 +1,4 @@
-# MIRA: Multimodal Intelligent Recognition Assistant
+# MIRA: Multimodal Intelligent Recognition Assistant (Smart Wearable Assistive System Using AI and Deep Learning for the Visually Impaired Dysphonic Individuals )
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x-orange.svg)](https://pytorch.org/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.8%2B-green.svg)](https://opencv.org/)
