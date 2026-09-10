@@ -1,12 +1,12 @@
 # MIRA: Multimodal Intelligent Recognition Assistant
 
 [![MIRA CI Pipeline](https://github.com/your-username/MIRA/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/MIRA/actions/workflows/ci.yml)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x-orange.svg)](https://pytorch.org/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.8%2B-green.svg)](https://opencv.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-MIRA is an edge-implemented multimodal assistive AI system designed to operate locally. The system integrates YOLOv8 object detection (`yolov8n.pt`), EfficientNet-Lite0 dense embedding extraction for visual memory, RapidOCR text extraction via ONNX Runtime, English speech recognition via Vosk (`vosk-model-small-en-in-0.4`), and Kannada ASR via Wav2Vec2 (`Harveenchadha/vakyansh-wav2vec2-kannada-knm-560`), synchronized with a local REST API backend (`http://localhost:8000`) for persistent SQLite storage.
+MIRA is an edge-implemented multimodal assistive AI system designed to help individuals with visual challenges and/or speech dysphonia an to operate locally on a Raspberrry Pi 5. The system integrates YOLOv8 object detection (`yolov8n.pt`), colou detection using pre-stored HSV value, EfficientNet-Lite0 dense embedding extraction for live on-device visual memory in order  to enable storage of personal artifacts and their to memorise and share audio cues whenever the system is in *Findiing Mode*, RapidOCR text extraction via ONNX Runtime, English speech recognition via Vosk (`vosk-model-small-en-in-0.4`), and Kannada ASR via a custom model developed by training a Wav2Vec2 (`Harveenchadha/vakyansh-wav2vec2-kannada-knm-560`) on Kannda speakers with speech dysphonia, making it a first of its kind speech dysphonia reconstruciton model designed for Kannada speakers, synchronized with a local REST API backend (`http://localhost:8000`) for persistent SQLite storage. All outputs of the system arre audio based, helping people with both visual and vocal challenges. Due to the innovative nature of this project, we've recieved a grant from the Govt. of Karnataka, India in order to aid us in the development of this system.
 
 ---
 
@@ -23,8 +23,20 @@ MIRA is an edge-implemented multimodal assistive AI system designed to operate l
 
 ## Demo
 
-![MIRA System Demo](assets/mira_demo.jpeg)
+![MIRA System Demo - Colour detection mode](assets/MIRA_demo_1.jpeg)
 *Real-time object bounding, text extraction burst capture, and local voice feedback over webcam stream.*
+
+![MIRA OCR Pipeline (Normal/Reading Mode)](assets/MIRA_demo_2.jpeg)
+*RapidOCR document scanning and text extraction with contrast enhancement.*
+
+![MIRA Kannada Speech Dysphonia Reconstruction Mode (Memory Mode)](assets/MIRA_demo_3.jpeg)
+*Local visual embedding matching and SQLite memory lookup interface.*
+
+![MIRA Memory Retrieval Mode (Memory Mode)](assets/MIRA_demo_4.jpeg)
+*Local visual embedding matching and SQLite memory lookup interface.*
+
+![MIRA Government Grant (Memory Mode)](assets/MIRA_KPSC_grant_selection.jpeg)
+*Local visual embedding matching and SQLite memory lookup interface.*
 
 ---
 
@@ -32,7 +44,7 @@ MIRA is an edge-implemented multimodal assistive AI system designed to operate l
 
 | Metric | Measurement | Test Environment |
 | :--- | :--- | :--- |
-| **Vision Inference Latency** | ~18.5 ms / frame | Intel i7-12700H / Edge CPU |
+| **Vision Inference Latency** | ~18.5 ms / frame | Rapsberry Pi 5 (Edge CPU) |
 | **Throughput** | 10 FPS (Capture Loop) / 30 FPS (YOLO Skip-Frame Cache) | 640x480 @ 10Hz video stream |
 | **OCR Recognition Rate** | ~94.2% Character Accuracy | Document burst mode (CLAHE + Gamma) |
 | **Memory Footprint** | ~420 MB RAM | Operational runtime with models loaded |
