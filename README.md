@@ -1,6 +1,4 @@
 # MIRA: Multimodal Intelligent Recognition Assistant
-
-[![MIRA CI Pipeline](https://github.com/your-username/MIRA/actions/workflows/ci.yml/badge.svg)](https://github.com/your-username/MIRA/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x-orange.svg)](https://pytorch.org/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.8%2B-green.svg)](https://opencv.org/)
@@ -52,7 +50,7 @@ MIRA is an edge-implemented multimodal assistive AI system designed to help indi
 
 ---
 
-## System Architecture
+## System Architecture (Example only for one of 4 Varying Modes)
 
 ```text
 [ Video Input (USB Webcam / v4l2 Stream) ]
