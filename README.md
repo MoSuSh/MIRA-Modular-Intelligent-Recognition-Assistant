@@ -22,19 +22,19 @@ MIRA is an edge-implemented multimodal assistive AI system designed to help indi
 ## Demo
 
 ![MIRA System Demo - Colour detection mode](assets/MIRA_demo_1.jpeg)
-*Real-time object bounding, text extraction burst capture, and local voice feedback over webcam stream.*
+*Real-time object bounding and colour extraction.*
 
 ![MIRA OCR Pipeline (Normal/Reading Mode)](assets/MIRA_demo_2.jpeg)
 *RapidOCR document scanning and text extraction with contrast enhancement.*
 
 ![MIRA Kannada Speech Dysphonia Reconstruction Mode (Memory Mode)](assets/MIRA_demo_3.jpeg)
-*Local visual embedding matching and SQLite memory lookup interface.*
+*Reconstructed words audible to the use and barely visible via text (Kannada).*
 
 ![MIRA Memory Retrieval Mode (Memory Mode)](assets/MIRA_demo_4.png)
 *Local visual embedding matching and SQLite memory lookup interface.*
 
 ![MIRA Government Grant ](assets/MIRA_KPSC_grant_selection.jpeg)
-*Local visual embedding matching and SQLite memory lookup interface.*
+*Selected by the Govt. of Karnataka to recieve a grant*
 
 ---
 
